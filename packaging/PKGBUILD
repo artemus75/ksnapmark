@@ -34,7 +34,7 @@ optdepends=(
   'ffmpeg: convert recordings to GIF'
 )
 source=("$pkgname-$pkgver.tar.gz::https://github.com/artemus75/ksnapmark/archive/refs/tags/v$pkgver.tar.gz")
-sha256sums=('8059c104f9c9a0972e3a7b0ea958300f78f44d908778c6cfc9abd95c1c95dd92')
+sha256sums=('bec5a86f47e42d3693cec2dc0455c2c82c0bb2007c7dc1a50ad4e802a539d38c')
 
 build() {
   cd "$srcdir/$pkgname-$pkgver"
