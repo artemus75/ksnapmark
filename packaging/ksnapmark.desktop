@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Name=KSnapMark
+Comment=Capture, edit and share screenshots
+Comment[de]=Screenshot aufnehmen, bearbeiten und teilen
+Exec=ksnapmark
+Icon=ksnapmark
+Terminal=false
+Categories=Utility;Graphics;
+Keywords=Screenshot;Capture;Bildschirmfoto;OCR;

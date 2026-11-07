@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Name=KSnapMark Ideas Collection
+Name[de]=KSnapMark Ideen-Sammlung
+Comment=Browse collected screenshots and ideas
+Comment[de]=Gesammelte Screenshots und Ideen durchsuchen
+Exec=ksnapmark --ideas
+Icon=ksnapmark
+Terminal=false
+Categories=Utility;Graphics;

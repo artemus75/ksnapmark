@@ -1,0 +1,11 @@
+__pycache__/
+*.py[cod]
+build/
+dist/
+*.egg-info/
+# makepkg output
+packaging/src/
+packaging/pkg/
+packaging/*.pkg.tar.*
+# images rendered by the test scripts (tests/data/ is tracked)
+tests/*.png

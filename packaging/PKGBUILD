@@ -1,0 +1,56 @@
+# Maintainer: Michael Melchers
+#
+# Build and install (from a clone of the repository):
+#     cd packaging && makepkg -si        (add -f to force a rebuild)
+# Uninstall:  sudo pacman -Rns ksnapmark
+#
+# Source: the GitHub release archive of the tag v$pkgver (checksum below).
+# For a new release: bump pkgver, run `updpkgsums` (pacman-contrib) and
+# `makepkg --printsrcinfo > .SRCINFO`.
+
+
+pkgname=ksnapmark
+pkgver=0.9.1
+pkgrel=1
+pkgdesc="Screenshot tool with editor, OCR, auto-redact and ideas collection (Qt, Wayland and X11)"
+arch=('any')
+url="https://github.com/artemus75/ksnapmark"
+license=('MIT')
+depends=('python' 'pyside6')
+makedepends=('python-build' 'python-installer' 'python-setuptools' 'python-wheel')
+optdepends=(
+  'tesseract: OCR and auto-redact'
+  'tesseract-data-deu: German OCR data'
+  'tesseract-data-eng: English OCR data'
+  'wl-clipboard: clipboard on Wayland (copied content survives closing)'
+  'xclip: clipboard on X11'
+  'libnotify: notifications'
+  'zbar: read QR codes and barcodes'
+  'python-opencv: read QR codes (fallback without zbar)'
+  'spectacle: capture fallback and screen recording on KDE'
+  'grim: capture on Sway/Hyprland'
+  'xdg-utils: open files, e-mail'
+  'curl: upload'
+  'ffmpeg: convert recordings to GIF'
+)
+source=("$pkgname-$pkgver.tar.gz::https://github.com/artemus75/ksnapmark/archive/refs/tags/v$pkgver.tar.gz")
+sha256sums=('8059c104f9c9a0972e3a7b0ea958300f78f44d908778c6cfc9abd95c1c95dd92')
+
+build() {
+  cd "$srcdir/$pkgname-$pkgver"
+  python -m build --wheel --no-isolation
+}
+
+package() {
+  cd "$srcdir/$pkgname-$pkgver"
+  python -m installer --destdir="$pkgdir" dist/*.whl
+
+  local pk="packaging"
+  install -Dm644 "$pk/ksnapmark.desktop"        "$pkgdir/usr/share/applications/ksnapmark.desktop"
+  install -Dm644 "$pk/ksnapmark-ideas.desktop"  "$pkgdir/usr/share/applications/ksnapmark-ideas.desktop"
+  # Start at login (can be switched off from the tray menu)
+  install -Dm644 "$pk/ksnapmark-daemon.desktop" "$pkgdir/etc/xdg/autostart/ksnapmark-daemon.desktop"
+  install -Dm644 ksnapmark/data/ksnapmark.svg "$pkgdir/usr/share/icons/hicolor/scalable/apps/ksnapmark.svg"
+  install -Dm644 README.md "$pkgdir/usr/share/doc/$pkgname/README.md"
+  install -Dm644 LICENSE "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
+}

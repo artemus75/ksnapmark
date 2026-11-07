@@ -1,0 +1,11 @@
+[Desktop Entry]
+Type=Application
+Name=KSnapMark
+Comment=Screenshot tool running in the background (tray icon)
+Comment[de]=Screenshot-Werkzeug im Hintergrund (Tray-Symbol)
+Exec=ksnapmark --daemon
+Icon=ksnapmark
+Terminal=false
+X-KDE-autostart-after=panel
+X-GNOME-Autostart-enabled=true
+NoDisplay=true

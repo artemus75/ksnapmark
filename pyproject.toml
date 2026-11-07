@@ -1,0 +1,33 @@
+[build-system]
+requires = ["setuptools>=77", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ksnapmark"
+dynamic = ["version"]
+description = "Screenshot tool with editor, OCR, auto-redact and ideas collection (Qt, Wayland and X11)"
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [{ name = "Michael Melchers" }]
+keywords = ["screenshot", "screen capture", "ocr", "redact", "wayland", "kde", "qt"]
+classifiers = [
+  "Environment :: X11 Applications :: Qt",
+  "Operating System :: POSIX :: Linux",
+  "Programming Language :: Python :: 3",
+  "Topic :: Multimedia :: Graphics :: Capture :: Screen Capture",
+]
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = ["PySide6"]
+
+[project.scripts]
+ksnapmark = "ksnapmark.app:main"
+
+[tool.setuptools]
+packages = ["ksnapmark", "ksnapmark.translations", "ksnapmark.data"]
+
+[tool.setuptools.package-data]
+"ksnapmark.data" = ["*.svg"]
+
+[tool.setuptools.dynamic]
+version = { attr = "ksnapmark.__version__" }
